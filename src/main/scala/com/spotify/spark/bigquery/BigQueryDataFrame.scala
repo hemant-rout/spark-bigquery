@@ -53,9 +53,9 @@ class BigQueryDataFrame(df: DataFrame) {
     val gcsPath = s"gs://$bucket/hadoop/tmp/spark-bigquery/$temp"
     df.write.avro(gcsPath)
 
-    val fdf = bq.load(gcsPath, tableRef, writeDisposition, createDisposition)
+    bq.load(gcsPath, tableRef, writeDisposition, createDisposition)
     delete(new Path(gcsPath))
-    fdf
+   
   }
 
   /**
